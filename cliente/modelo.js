@@ -6,6 +6,12 @@ function Sistema(){
     this.obtenerUsuarios=function(){
         return this.usuarios;
     }
+    this.usuarioActivo=function(nick){
+        return this.usuarios.hasOwnProperty(nick);
+    }
+    this.eliminarUsuario=function(nick){
+        delete this.usuarios[nick];
+    }
 }
 function Usuario(nick){
     this.nick=nick;
