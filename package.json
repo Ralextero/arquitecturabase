@@ -4,7 +4,7 @@
   "description": "Proyecto Procesos de Ingeniería del Software",
   "main": "index.js",
   "scripts": {
-    "testW": "node_modules\\.bin\\jasmine-node servidor",
+    "start": "node index.js",
     "test": "jasmine servidor/modeloSpec.js"
   },
   "repository": {
