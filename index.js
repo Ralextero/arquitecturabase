@@ -4,7 +4,13 @@ const app = express();
 const modelo = require("./servidor/modelo.js");
 const PORT = process.env.PORT || 3000;
 let sistema = new modelo.Sistema();
+
 app.use(express.static(__dirname + "/"));
+
+// Servir index.html en la ruta raíz
+app.get("/", function(req, res) {
+    res.sendFile(__dirname + "/cliente/index.html");
+});
 
 app.get("/agregarUsuario/:nick", function(request, response) {
     let nick = request.params.nick;
@@ -22,22 +28,22 @@ app.get("/obtenerUsuarios", function(request, response) {
 app.get("/usuarioActivo/:nick", function(request, response) {
     let nick = request.params.nick;
     let activo = sistema.usuarioActivo(nick);
-    response.json({ res: activo });
+    response.send(activo);
 });
 
 app.get("/numeroUsuarios", function(request, response) {
     let numero = sistema.numeroUsuarios();
-    response.json({ num: numero });
+    response.send(numero);
 });
 
 app.get("/eliminarUsuario/:nick", function(request, response) {
     let nick = request.params.nick;
-    let existia = sistema.usuarioActivo(nick);
+    let existia = sistema.usuarioActivo(nick).res;
     if (existia) {
         sistema.eliminarUsuario(nick);
-        response.json({ eliminado: true });
+        response.send(true);
     } else {
-        response.json({ eliminado: false });
+        response.send(false);
     }
 });
 
