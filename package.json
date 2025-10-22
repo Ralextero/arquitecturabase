@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Ralextero/arquitecturabase#readme",
   "dependencies": {
+    "express": "^5.1.0",
     "jasmine": "^5.12.0"
   }
 }
